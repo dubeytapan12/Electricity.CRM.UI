@@ -1,0 +1,17 @@
+<div class="login-form">
+    <div class="form">
+        <h2 class="text-center">Log in</h2>       
+        <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="user.userName" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+           <input type="password" [(ngModel)]="user.password" class="form-control" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="button" (click)="Login()" class="btn btn-primary btn-block" style="margin-left: 190px;margin-top: 10px;">Log in</button>
+        </div>
+        <div class="clearfix">
+            <a href="#" class="float-right">Forgot Password?</a>
+        </div>        
+    </div>
+</div>
