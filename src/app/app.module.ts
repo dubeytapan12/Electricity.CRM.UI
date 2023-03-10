@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
     ForgotPasswordComponent,
     DashboardComponent,
     UserComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

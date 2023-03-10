@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../login/User';
 import { SecurityModel } from './SecurityModel';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { ResetUser } from '../resetUser';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,15 @@ export class SecurityService {
     sessionStorage.removeItem("ElectricityBearerToken");
     sessionStorage.removeItem("ElectricityRefreshToken");
   }
+  public IsValidUser(username: string | null, token: string | null): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          "Content-Type": "application/json"
+      })
+    };
+    return this.httpClient.get<any>(`${this.apiUrl}Users/valid-user/${username}/${token}`,
+    httpOptions);
+  }
   public getUserDetails(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}userdetails`);
   }
@@ -34,6 +44,13 @@ export class SecurityService {
     };
   }
 
+  public ResetPassword(resetItem:ResetUser)  {
+return this.httpClient.post(`${this.apiUrl}Users/reset-password`,resetItem);
+  }
+
+  public ForgotPassword(userName: string) {
+    return this.httpClient.get(`${this.apiUrl}Users/forgot-password/${userName}`)
+  }
   public Login(userForm: User): Observable<SecurityModel> {
     const httpOptions = {
       headers: new HttpHeaders({
