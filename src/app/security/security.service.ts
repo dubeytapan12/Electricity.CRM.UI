@@ -42,6 +42,9 @@ export class SecurityService {
      access_Token:'',
      refresh_Token:''
     };
+    sessionStorage.removeItem("ElectricityUser");
+    sessionStorage.removeItem("ElectricityBearerToken");
+    sessionStorage.removeItem("ElectricityRefreshToken");
   }
 
   public ResetPassword(resetItem:ResetUser)  {
@@ -77,6 +80,7 @@ return this.httpClient.post(`${this.apiUrl}Users/reset-password`,resetItem);
               "ElectricityRefreshToken",
               this.securityModel.refresh_Token
             );
+            sessionStorage.setItem("ElectricityUser",userForm.userName);
           } else {
             this.clearSecurityModel();
           }

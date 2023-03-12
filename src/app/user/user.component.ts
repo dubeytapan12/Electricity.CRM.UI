@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ElectricityUserService } from './electricity-user.service';
+import { User } from './user';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  user:User = new User();
+  connectionType:string = 'commercial';
+  constructor(private electricityUserService:ElectricityUserService) { }
 
   ngOnInit(): void {
   }
-
+  SaveUserData() : void {
+    alert(JSON.stringify(this.user));
+    alert(this.connectionType);
+    this.electricityUserService.SaveUser(this.user,this.connectionType).subscribe({
+      next: item=> {
+        alert('data saved succesfuly');
+        this.user = new User();
+      },
+      error: error=> {
+      alert(error);
+      }
+    });
+  }
 }

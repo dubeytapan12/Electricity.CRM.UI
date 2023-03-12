@@ -8,12 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UploadElectricUserComponent } from './upload-electric-user/upload-electric-user.component';
 
 @NgModule({
   declarations: [
@@ -24,14 +25,16 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     DashboardComponent,
     UserComponent,
     SpinnerComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    UploadElectricUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

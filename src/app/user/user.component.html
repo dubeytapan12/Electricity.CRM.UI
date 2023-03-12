@@ -1,1 +1,82 @@
-<p>user works!</p>
+<h2>Add Electricity User</h2>
+<div style="width: 600px;
+margin: 20px;">
+<div class="form-group">
+    <label for="connectionType">Connection Type</label>
+    <select [(ngModel)]="connectionType"  id="connectionType" class="form-select">
+        <option value="commercial">
+        Commercial
+        </option>
+        <option value="residential">
+            Residential
+            </option>
+            <option value="flat">
+                Flat
+                </option>
+                <option value="factory">
+                    Factory
+                    </option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="fname">First Name</label>
+    <input type="text" [(ngModel)]="user.fName" class="form-control" id="fname" aria-describedby="fname" placeholder="First Name">
+</div>
+<div class="form-group">
+    <label for="lname">Last Name</label>
+    <input type="text" [(ngModel)]="user.lName" class="form-control" id="lname" aria-describedby="lname" placeholder="Last Name">
+</div>
+<div class="form-group">
+    <label for="connectionDate">Connection Date</label>
+    <input type="date" [(ngModel)]="user.connectionDate" class="form-control" id="connectionDate" aria-describedby="connectionDate" placeholder="Connection Date">
+</div> 
+<div class="form-group">
+    <label for="mobile">Mobile</label>
+    <input type="text" [(ngModel)]="user.mobile" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Mobile">
+</div> 
+<div class="form-group">
+    <label for="isUsingNewMeeter">Is Using New Meeter</label>
+    <input type="checkbox" [(ngModel)]="user.isUsingNewMeeter" class="form-check-input" id="isUsingNewMeeter" aria-describedby="isUsingNewMeeter" placeholder="Is Using New Meeter">
+</div> 
+<div class="form-group">
+    <label for="fatherName">Father Name</label>
+    <input type="text" [(ngModel)]="user.fatherName" class="form-control" id="fatherName" aria-describedby="fatherName" placeholder="Father Name">
+</div> 
+<div class="form-group">
+    <label for="dOB">DOB</label>
+    <input type="date" [(ngModel)]="user.dOB" class="form-control" id="dOB" aria-describedby="dOB" placeholder="DOB">
+</div> 
+<div class="form-group">
+    <label for="aadharNumber">Aadhar Number</label>
+    <input type="text" [(ngModel)]="user.aadharNumber" class="form-control" id="aadharNumber" aria-describedby="aadharNumber" placeholder="Aadhar">
+</div> 
+<div class="form-group">
+    <label for="addressLine1">Address Line1</label>
+    <input type="text" [(ngModel)]="user.addressLine1" class="form-control" id="addressLine1" aria-describedby="addressLine1" placeholder="Address Line1">
+</div> 
+<div class="form-group">
+    <label for="addressLine2">Address Line2</label>
+    <input type="text" [(ngModel)]="user.addressLine2" class="form-control" id="addressLine2" aria-describedby="addressLine2" placeholder="Address Line2">
+</div> 
+<div class="form-group">
+    <label for="city">City</label>
+    <input type="text" [(ngModel)]="user.city" class="form-control" id="city" aria-describedby="city" placeholder="City">
+</div> 
+<div class="form-group">
+    <label for="district">District</label>
+    <input type="text" [(ngModel)]="user.district" class="form-control" id="district" aria-describedby="district" placeholder="District">
+</div> 
+<div class="form-group">
+    <label for="state">State</label>
+    <input type="text" [(ngModel)]="user.state" class="form-control" id="state" aria-describedby="state" placeholder="State">
+</div> 
+<div class="form-group">
+    <label for="pincode">Pincode</label>
+    <input type="number" [(ngModel)]="user.pincode" class="form-control" id="pincode" aria-describedby="pincode" placeholder="Pincode">
+</div> 
+<div class="form-group">
+    <label for="pincode">Notes</label>
+    <input type="text" [(ngModel)]="user.notes" class="form-control" id="notes" aria-describedby="notes" placeholder="Notes">
+</div>  
+  <button style="margin: 20px;margin-left: 2px;" type="button" (click)="SaveUserData()" class="btn btn-primary">Save</button>
+</div>

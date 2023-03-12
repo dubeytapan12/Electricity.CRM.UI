@@ -5,6 +5,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UploadElectricUserComponent } from './upload-electric-user/upload-electric-user.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
@@ -31,6 +32,11 @@ const routes: Routes = [
       {
         path: "user",
         component: UserComponent
+        ,
+      },
+      {
+        path: "user-upload",
+        component: UploadElectricUserComponent
         ,
       },
     ],
