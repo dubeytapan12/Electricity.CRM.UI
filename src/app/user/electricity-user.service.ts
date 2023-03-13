@@ -48,6 +48,6 @@ upload(file:any): Observable<any> {
   formData.append('file', file, file.name);
   // Make http post request over api
   // with formData as req
-  return this.httpClient.post(`${this.apiUrl}FileUpload/${ sessionStorage.getItem("ElectricityUser")}`, formData);
+  return this.httpClient.post(`${this.apiUrl}FileUpload/${ localStorage.getItem("ElectricityUser")}`, formData);
 }
 }

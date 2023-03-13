@@ -16,8 +16,6 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
   SaveUserData() : void {
-    alert(JSON.stringify(this.user));
-    alert(this.connectionType);
     this.electricityUserService.SaveUser(this.user,this.connectionType).subscribe({
       next: item=> {
         alert('data saved succesfuly');
