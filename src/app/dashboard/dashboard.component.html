@@ -1,1 +1,31 @@
-<p>dashboard works!</p>
+
+<table style="width: 100%;">
+    <tr>
+        <td colspan="2">&nbsp;</td>
+    </tr>
+<tr>
+    <td><canvas baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [type]="'bar'" [width]="600">
+</canvas></td>
+    <td><canvas baseChart
+        [type]="'pie'"
+        [datasets]="pieChartDatasets"
+        [labels]="pieChartLabels"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend">
+      </canvas></td>
+</tr>
+<tr>
+    <td colspan="2">&nbsp;</td>
+</tr>
+</table>
+
+
+
+
+

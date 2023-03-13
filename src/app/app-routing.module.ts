@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddBillComponent } from './add-bill/add-bill.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AuthGuardGuard } from './guard/auth-guard.guard';
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -24,20 +26,27 @@ const routes: Routes = [
   {
     path: "Home",
     component: HomeComponent,
+    canActivate: [AuthGuardGuard],
     children: [
       {
         path: "",
         component: DashboardComponent,
+        canActivateChild: [AuthGuardGuard],
       },
       {
         path: "user",
-        component: UserComponent
-        ,
+        component: UserComponent,
+        canActivateChild: [AuthGuardGuard],
       },
       {
         path: "user-upload",
-        component: UploadElectricUserComponent
-        ,
+        component: UploadElectricUserComponent,
+        canActivateChild: [AuthGuardGuard],
+      },
+      {
+        path: "add-bill",
+        component: AddBillComponent,
+        canActivateChild: [AuthGuardGuard],
       },
     ],
   },

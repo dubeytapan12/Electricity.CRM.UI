@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../login/User';
 import { SecurityModel } from './SecurityModel';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ResetUser } from '../resetUser';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { ResetUser } from '../resetUser';
 export class SecurityService {
 
   private apiUrl: string = environment.apiUrl;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,private router: Router) {}
   private _securityModel: SecurityModel = new SecurityModel();
   get securityModel() {
     return this._securityModel;
@@ -50,7 +51,34 @@ export class SecurityService {
   public ResetPassword(resetItem:ResetUser)  {
 return this.httpClient.post(`${this.apiUrl}Users/reset-password`,resetItem);
   }
-
+public RefreshToken() : any {
+  if(sessionStorage.getItem('ElectricityBearerToken')){
+  var refreshToken = { 'access_Token': sessionStorage.getItem('ElectricityBearerToken')?.toString(),'refresh_Token': sessionStorage.getItem('ElectricityRefreshToken')?.toString()};
+  return this.httpClient.post(`${this.apiUrl}Users/refresh`,refreshToken).pipe(
+    tap((result) => {
+      this.clearSecurityModel();
+      Object.assign(this.securityModel, result);
+      //Now check if Authenticated is true store token in sessionStorage
+      if (this.securityModel.access_Token && this.securityModel.refresh_Token) {
+        sessionStorage.setItem(
+          "ElectricityBearerToken",
+          this.securityModel.access_Token
+        );
+        sessionStorage.setItem(
+          "ElectricityRefreshToken",
+          this.securityModel.refresh_Token
+        );
+      } else {
+        this.clearSecurityModel();
+      }
+    })
+  );
+  }
+  else {
+    this.router.navigate([""]);
+    return of(null);
+  }
+}
   public ForgotPassword(userName: string) {
     return this.httpClient.get(`${this.apiUrl}Users/forgot-password/${userName}`)
   }

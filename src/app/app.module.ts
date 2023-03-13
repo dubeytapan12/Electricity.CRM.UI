@@ -15,6 +15,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UploadElectricUserComponent } from './upload-electric-user/upload-electric-user.component';
+import { AddBillComponent } from './add-bill/add-bill.component';
+import { NgChartsModule } from 'ng2-charts';
+import { AuthInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { UploadElectricUserComponent } from './upload-electric-user/upload-elect
     UserComponent,
     SpinnerComponent,
     ResetPasswordComponent,
-    UploadElectricUserComponent
+    UploadElectricUserComponent,
+    AddBillComponent
   ],
   imports: [
     BrowserModule,
@@ -34,11 +38,14 @@ import { UploadElectricUserComponent } from './upload-electric-user/upload-elect
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
   ],
   providers: [
     {
     provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true
+  },{
+    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true
   }],
   bootstrap: [AppComponent]
 })

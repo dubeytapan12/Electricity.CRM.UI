@@ -1,0 +1,53 @@
+<h2>Add Bill</h2>
+<div style="width: 600px;
+margin: 20px;">
+<div class="form-group">
+    <label for="connectionType">Connection Type</label>
+    <select [(ngModel)]="user.connectionType"  id="connectionType" class="form-select">
+        <option value="">
+           Select
+            </option>
+        <option value="commercial">
+        Commercial
+        </option>
+        <option value="residential">
+            Residential
+            </option>
+            <option value="flat">
+                Flat
+                </option>
+                <option value="factory">
+                    Factory
+                    </option>
+    </select>
+</div>
+<div class="form-group" *ngIf="user.connectionType=='commercial'">
+    <label for="commercialUserId">Commercial User</label>
+    <select [(ngModel)]="user.commercialUserId"  id="user.commercialUserId" class="form-select">
+        <option *ngFor="let c of commercialUsers" [ngValue]="c.id">{{c.fName}}</option>
+    </select>
+</div>
+<div class="form-group" *ngIf="user.connectionType=='residential'">
+    <label for="residentialUserId">Residential User</label>
+    <select [(ngModel)]="user.residentialUserId"  id="user.residentialUserId" class="form-select">
+        <option *ngFor="let c of residentialUsers" [ngValue]="c.id">{{c.fName}}</option>
+    </select>
+</div>
+<div class="form-group" *ngIf="user.connectionType=='flat'">
+    <label for="flatUserId">Flat User</label>
+    <select [(ngModel)]="user.flatUserId"  id="user.flatUserId" class="form-select">
+        <option *ngFor="let c of flatUsers" [ngValue]="c.id">{{c.fName}}</option>
+    </select>
+</div>
+<div class="form-group" *ngIf="user.connectionType=='factory'">
+    <label for="factoryUserId">Factory User</label>
+    <select [(ngModel)]="user.factoryUserId"  id="user.factoryUserId" class="form-select">
+        <option *ngFor="let c of factoryUsers" [ngValue]="c.id">{{c.fName}}</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="amount">Amount</label>
+    <input type="number" [(ngModel)]="user.amount" class="form-control" id="amount" aria-describedby="fname" placeholder="First Name">
+</div> 
+  <button [disabled]="user.connectionType==''" style="margin: 20px;margin-left: 2px;" type="button" (click)="SaveBill()" class="btn btn-primary">Save</button>
+</div>

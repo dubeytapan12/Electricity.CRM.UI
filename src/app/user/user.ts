@@ -1,4 +1,5 @@
 export class User {
+    id?: Number;
     fName: string ='';
     lName: string ='';
     connectionDate: Date = new Date();
