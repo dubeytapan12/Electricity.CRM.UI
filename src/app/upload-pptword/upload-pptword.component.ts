@@ -1,16 +1,13 @@
-import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { catchError, map, of } from 'rxjs';
 import { ElectricityUserService } from '../user/electricity-user.service';
 
 @Component({
-  selector: 'app-upload-electric-user',
-  templateUrl: './upload-electric-user.component.html',
-  styleUrls: ['./upload-electric-user.component.css']
+  selector: 'app-upload-pptword',
+  templateUrl: './upload-pptword.component.html',
+  styleUrls: ['./upload-pptword.component.css']
 })
-export class UploadElectricUserComponent implements OnInit {
-  
+export class UploadPPTWordComponent implements OnInit {
+
   loading: boolean = false; // Flag variable
   file: File = {} as File; // Variable to store file to Upload
   // Inject service 
@@ -28,9 +25,9 @@ export class UploadElectricUserComponent implements OnInit {
     if (this.file) {
       this.loading = !this.loading;
       console.log(this.file);
-      this.fileUploadService.upload(this.file).subscribe({
-        next: result=> alert('uploaded succesfuly and sent email!'),
-        error: result=> alert('uploaded succesfuly and sent email!'),
+      this.fileUploadService.uploadPPTWorld(this.file).subscribe({
+        next: result=> alert('uploaded succesfuly!'),
+        error: result=> alert('uploaded succesfuly!'),
       });
     }
   }

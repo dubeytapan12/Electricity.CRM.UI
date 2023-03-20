@@ -8,6 +8,7 @@ import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UploadElectricUserComponent } from './upload-electric-user/upload-electric-user.component';
+import { UploadPPTWordComponent } from './upload-pptword/upload-pptword.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
@@ -41,6 +42,11 @@ const routes: Routes = [
       {
         path: "user-upload",
         component: UploadElectricUserComponent,
+        canActivateChild: [AuthGuardGuard],
+      },
+      {
+        path: "upload-ppt-word",
+        component: UploadPPTWordComponent,
         canActivateChild: [AuthGuardGuard],
       },
       {

@@ -18,6 +18,7 @@ import { UploadElectricUserComponent } from './upload-electric-user/upload-elect
 import { AddBillComponent } from './add-bill/add-bill.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AuthInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
+import { UploadPPTWordComponent } from './upload-pptword/upload-pptword.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthInterceptorInterceptor } from './interceptors/auth-interceptor.inte
     SpinnerComponent,
     ResetPasswordComponent,
     UploadElectricUserComponent,
-    AddBillComponent
+    AddBillComponent,
+    UploadPPTWordComponent
   ],
   imports: [
     BrowserModule,

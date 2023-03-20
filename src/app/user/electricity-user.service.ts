@@ -50,4 +50,13 @@ upload(file:any): Observable<any> {
   // with formData as req
   return this.httpClient.post(`${this.apiUrl}FileUpload/${ localStorage.getItem("ElectricityUser")}`, formData);
 }
+uploadPPTWorld(file:any): Observable<any> {
+  // Create form data
+  const formData = new FormData();
+  // Store form name as "file" with file data
+  formData.append('file', file, file.name);
+  // Make http post request over api
+  // with formData as req
+  return this.httpClient.post(`${this.apiUrl}FileUpload/ProjectFile/${ localStorage.getItem("ElectricityUser")}`, formData);
+}
 }
