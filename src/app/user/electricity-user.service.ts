@@ -1,9 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Biller } from '../add-bill/biller';
 import { BillGroup } from '../dashboard/bill-group';
+import { ElectricityUser } from '../dashboard/electricity-user';
 import { User } from './user';
 
 @Injectable({
@@ -12,6 +13,11 @@ import { User } from './user';
 export class ElectricityUserService {
 
   private apiUrl: string = environment.apiUrl;
+  httpOptions = {
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+    })
+}
   constructor(private httpClient: HttpClient) {}
 
   public saveBill(billUser:Biller) {
@@ -29,11 +35,23 @@ export class ElectricityUserService {
         userForm
       );
   }
+  public GetElectricityUserByType(connectionType: string): Observable<ElectricityUser[]>
+  {
+    return this.httpClient
+      .get<ElectricityUser[]>( `${this.apiUrl}ElectricityUser/users/connectionType/${connectionType}`);
+  }
   public GetGroupedBill(): Observable<BillGroup>
   {
     return this.httpClient
       .get<BillGroup>( `${this.apiUrl}ElectricityBillers/get-bill-grouping`);
   }
+  updateUser(user: User,connectionType: string): Observable < User > {
+    return this.httpClient.put < User > (`${this.apiUrl}ElectricityUser/users/connectionType/${connectionType}`,user);
+}
+
+removeUser(id: number,connectionType: string) {
+  return this.httpClient.delete <User> (`${this.apiUrl}ElectricityUser/users/connectionType/${connectionType}/id/${id}`);
+}
   public GetUsers(connectionType:string): Observable<User[]>
   {
     //ElectricityUser/users/connectionType/2332

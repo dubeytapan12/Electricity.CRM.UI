@@ -23,6 +23,108 @@
 <tr>
     <td colspan="2">&nbsp;</td>
 </tr>
+<tr>
+    <td colspan="2" style="padding: 20px;">
+        <b>Connection Type:&nbsp;</b>
+        <select  #mySelect
+        (change)='bindUsers(mySelect.value)'>
+            <option value="-1">Select</option>
+            <option value="factory">Factory</option>
+            <option value="flat">Flat</option>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+        </select>
+    </td>
+</tr>
+<Tr *ngIf="users.length>0">
+    <Td colspan="2">
+        <p-table
+        #dt
+        [columns]="cols"
+        [value]="users"
+        dataKey="id" editMode="row"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="pi pi-file"
+              (click)="dt.exportCSV()"
+              class="mr-2"
+              pTooltip="CSV"
+              tooltipPosition="bottom"
+            ></button>
+            <button
+              type="button"
+              pButton
+              pRipple
+              icon="pi pi-file-excel"
+              (click)="exportExcel()"
+              class="p-button-success mr-2"
+              pTooltip="XLS"
+              tooltipPosition="bottom"
+            ></button>
+           
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns >
+          <tr>
+            <th *ngFor="let col of columns">
+              {{ col.header }}
+            </th>
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-editing="editing"
+        let-ri="rowIndex" let-columns="columns" >
+          <tr [pEditableRow]="user">
+            <td *ngFor="let col of columns">
+                <p-cellEditor>
+                    
+                    <ng-template pTemplate="input" *ngIf="col.field!=='connectionDate'">
+                        <input pInputText type="text" 
+                               [(ngModel)]="user[col.field]" />
+                    </ng-template>
+                    <ng-template pTemplate="input" *ngIf="col.field==='connectionDate'">
+                        <input  type="datetime" datetime="yyyy-MM-dd"
+                               [(ngModel)]="user[col.field]" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ user[col.field] }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+                <button *ngIf="!editing"
+                          pButton pRipple type="button" 
+                          pInitEditableRow icon="pi pi-pencil" 
+                          (click)="onRowEditInit(user, ri)" 
+                          class="p-button-rounded p-button-text">
+                </button>
+                <button *ngIf="editing" 
+                          pButton pRipple type="button" 
+                          pSaveEditableRow icon="pi pi-check" 
+                          (click)="onRowEditSave(user, ri)" 
+                          class="p-button-rounded 
+                                 p-button-text 
+                                 p-button-success mr-2">
+                </button>
+            </td>
+            <td>
+                <p-button (onClick)="deleteUser(user.id)" icon="pi pi-close">X</p-button>
+            </td>
+            <!-- <td *ngFor="let col of columns">
+              {{ rowData[col.field] }}
+            </td> -->
+          </tr>
+        </ng-template>
+      </p-table>
+      
+    </Td>
+</Tr>
 </table>
 
 

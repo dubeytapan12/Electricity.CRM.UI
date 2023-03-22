@@ -20,6 +20,10 @@ import { NgChartsModule } from 'ng2-charts';
 import { AuthInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { UploadPPTWordComponent } from './upload-pptword/upload-pptword.component';
 
+
+import { TableModule } from "primeng/table";
+import { ButtonModule } from "primeng/button";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +45,9 @@ import { UploadPPTWordComponent } from './upload-pptword/upload-pptword.componen
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    NgChartsModule
+    NgChartsModule,
+    TableModule,
+    ButtonModule
   ],
   providers: [
     {
